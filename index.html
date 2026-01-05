@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,19 +16,19 @@
         <p class="eyebrow">Live Algorithms</p>
         <h1>Sorting Visualizer</h1>
       </div>
-      <button id="togglePanel" class="ghost-button" aria-expanded="true" aria-controls="controlPanel">Pannello</button>
+      <button id="togglePanel" class="ghost-button" aria-expanded="true" aria-controls="controlPanel">Panel</button>
     </header>
 
     <div class="layout">
-      <aside id="controlPanel" class="control-panel" aria-label="Pannello controlli">
+      <aside id="controlPanel" class="control-panel" aria-label="Control panel">
         <div class="panel-section">
           <div class="section-header">
-            <h2>Controlli</h2>
+            <h2>Controls</h2>
             <span class="badge">Live</span>
           </div>
           <label class="field">
-            <span>Algoritmo</span>
-            <select id="algorithmSelect" aria-label="Seleziona algoritmo">
+            <span>Algorithm</span>
+            <select id="algorithmSelect" aria-label="Select algorithm">
               <option value="bubble">Bubble Sort</option>
               <option value="selection">Selection Sort</option>
               <option value="insertion">Insertion Sort</option>
@@ -40,29 +40,29 @@
 
           <label class="field slider-field">
             <div class="field-row">
-              <span>Dimensione array</span>
+              <span>Array size</span>
               <span id="sizeValue" class="value-pill">50</span>
             </div>
-            <input type="range" min="10" max="200" value="50" id="sizeSlider" aria-label="Dimensione array">
+            <input type="range" min="10" max="200" value="50" id="sizeSlider" aria-label="Array size">
           </label>
 
           <label class="field slider-field">
             <div class="field-row">
-              <span>Velocità (ms)</span>
+              <span>Speed (ms)</span>
               <span id="speedValue" class="value-pill">40</span>
             </div>
-            <input type="range" min="5" max="400" value="40" id="speedSlider" aria-label="Velocità animazione">
+            <input type="range" min="5" max="400" value="40" id="speedSlider" aria-label="Animation speed">
           </label>
 
           <label class="field">
             <div class="field-row">
-              <span>Preset array</span>
+              <span>Array preset</span>
               <span class="value-pill ghost">extra</span>
             </div>
-            <select id="presetSelect" aria-label="Seleziona preset array">
+            <select id="presetSelect" aria-label="Select array preset">
               <option value="random">Random</option>
-              <option value="nearly">Quasi ordinato</option>
-              <option value="reversed">Inverso</option>
+              <option value="nearly">Nearly sorted</option>
+              <option value="reversed">Reversed</option>
             </select>
           </label>
 
@@ -78,7 +78,7 @@
             <label class="toggle">
               <input type="checkbox" id="numbersToggle" checked>
               <span class="slider"></span>
-              <span class="label">Mostra numeri</span>
+              <span class="label">Show numbers</span>
             </label>
             <label class="toggle">
               <input type="checkbox" id="audioToggle">
@@ -90,7 +90,7 @@
 
         <div class="panel-section legend">
           <div class="section-header">
-            <h2>Legenda</h2>
+            <h2>Legend</h2>
           </div>
           <div class="legend-grid">
             <span class="pill default">Default</span>
@@ -104,10 +104,10 @@
 
         <div class="panel-section info">
           <div class="section-header">
-            <h2>Algoritmo</h2>
+            <h2>Algorithm</h2>
             <div class="info-actions">
-              <span id="stabilityTag" class="badge">Stabile</span>
-              <button id="infoBtn" class="icon-button" aria-haspopup="dialog" aria-controls="infoModal" aria-label="Dettagli algoritmo">i</button>
+              <span id="stabilityTag" class="badge">Stable</span>
+              <button id="infoBtn" class="icon-button" aria-haspopup="dialog" aria-controls="infoModal" aria-label="Algorithm details">i</button>
             </div>
           </div>
           <div id="algoDescription" class="info-text"></div>
@@ -130,9 +130,9 @@
 
       <main class="visual">
         <div class="stats-overlay" role="status">
-          <div class="stat"><span class="muted">Confronti</span><span id="compareCount">0</span></div>
-          <div class="stat"><span class="muted">Scambi</span><span id="swapCount">0</span></div>
-          <div class="stat"><span class="muted">Tempo</span><span id="timeElapsed">0 ms</span></div>
+          <div class="stat"><span class="muted">Comparisons</span><span id="compareCount">0</span></div>
+          <div class="stat"><span class="muted">Swaps</span><span id="swapCount">0</span></div>
+          <div class="stat"><span class="muted">Time</span><span id="timeElapsed">0 ms</span></div>
         </div>
         <div id="bars" class="bars" aria-live="polite"></div>
       </main>
@@ -148,8 +148,8 @@
   <div id="infoModal" class="info-modal" role="dialog" aria-modal="true" aria-labelledby="infoTitle" aria-hidden="true">
     <div class="info-dialog">
       <div class="info-dialog-header">
-        <h3 id="infoTitle">Algoritmo</h3>
-        <button id="infoClose" class="icon-button" aria-label="Chiudi dettagli">×</button>
+        <h3 id="infoTitle">Algorithm</h3>
+        <button id="infoClose" class="icon-button" aria-label="Close details">×</button>
       </div>
       <p id="infoBody" class="info-body"></p>
     </div>

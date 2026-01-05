@@ -1,8 +1,8 @@
 /**
- * Quick start: apri index.html in un browser moderno. Controlli:
- * - Space per start/pause, R per reset.
- * - Usa i toggle per numeri/audio/tema. Velocità in ms per step.
- * Architettura: generatori di azioni per ogni sort, renderer a barre, motore di playback con pausa/step.
+ * Quick start: open index.html in a modern browser. Controls:
+ * - Space to start/pause, R to reset.
+ * - Use toggles for numbers/audio; speed is ms per step.
+ * Architecture: action generators per sort, bar renderer, playback engine with pause/step.
  */
 
 const $ = (id) => document.getElementById(id);
@@ -44,8 +44,8 @@ const algorithmInfo = {
     best: 'O(n)',
     avg: 'O(n²)',
     worst: 'O(n²)',
-    desc: 'Confronta coppie adiacenti e le scambia se fuori ordine. Ripete finché l’array è ordinato. Facile da capire ma poco efficiente.',
-    details: 'Bubble sort attraversa ripetutamente l’array confrontando elementi adiacenti e scambiandoli se sono in ordine sbagliato. Dopo ogni passata l’elemento più grande “bolle” alla fine. È stabile, semplice da implementare, ma scala male su input grandi.'
+    desc: 'Compares adjacent pairs and swaps them if out of order. Repeats until the array is sorted. Easy to grasp but inefficient.',
+    details: 'Bubble sort repeatedly scans the array, comparing adjacent elements and swapping when they are out of order. After each pass the largest element bubbles to the end. It is stable, simple to implement, but scales poorly on large inputs.'
   },
   selection: {
     name: 'Selection Sort',
@@ -53,8 +53,8 @@ const algorithmInfo = {
     best: 'O(n²)',
     avg: 'O(n²)',
     worst: 'O(n²)',
-    desc: 'Seleziona il minimo nella parte non ordinata e lo porta in posizione. Riduce i passaggi ma resta quadratico.',
-    details: 'Selection sort divide l’array in una parte ordinata e una non ordinata. A ogni iterazione trova il minimo della zona non ordinata e lo porta in testa. Esegue sempre lo stesso numero di confronti, ma non è stabile e resta O(n²).'
+    desc: 'Selects the minimum in the unsorted part and moves it into place. Fewer passes but still quadratic.',
+    details: 'Selection sort splits the array into a sorted and an unsorted part. Each iteration finds the minimum in the unsorted zone and moves it to the front. It always does the same number of comparisons, is not stable, and remains O(n²).'
   },
   insertion: {
     name: 'Insertion Sort',
@@ -62,8 +62,8 @@ const algorithmInfo = {
     best: 'O(n)',
     avg: 'O(n²)',
     worst: 'O(n²)',
-    desc: 'Inserisce ogni elemento nella sezione già ordinata spostando quelli maggiori. Ottimo per array piccoli o quasi ordinati.',
-    details: 'Insertion sort considera la parte sinistra già ordinata e inserisce ogni nuovo elemento nella posizione corretta spostando quelli più grandi. È stabile e molto veloce su input piccoli o quasi ordinati, ma degrada a O(n²) su input casuali grandi.'
+    desc: 'Inserts each element into the already sorted section by shifting larger ones. Great for small or nearly sorted arrays.',
+    details: 'Insertion sort treats the left side as sorted and inserts each new element into its correct position by shifting larger ones. It is stable and fast on small or nearly sorted input, but degrades to O(n²) on large random data.'
   },
   merge: {
     name: 'Merge Sort',
@@ -71,8 +71,8 @@ const algorithmInfo = {
     best: 'O(n log n)',
     avg: 'O(n log n)',
     worst: 'O(n log n)',
-    desc: 'Divide ricorsivamente in metà, ordina e fonde mantenendo l’ordine. Stabile e garantito log-lineare, usa memoria extra.',
-    details: 'Merge sort divide l’array a metà fino a raggiungere sottovettori di 1 elemento, poi fonde le parti mantenendo l’ordine. Offre complessità O(n log n) garantita ed è stabile, ma richiede spazio aggiuntivo per l’array di supporto.'
+    desc: 'Recursively splits in halves, sorts, and merges while keeping order. Stable and guaranteed O(n log n), uses extra memory.',
+    details: 'Merge sort splits the array in half down to single-element subarrays, then merges while preserving order. It guarantees O(n log n) and is stable, but needs extra space for the auxiliary array.'
   },
   quick: {
     name: 'Quick Sort',
@@ -80,8 +80,8 @@ const algorithmInfo = {
     best: 'O(n log n)',
     avg: 'O(n log n)',
     worst: 'O(n²)',
-    desc: 'Sceglie un pivot, partiziona in minori e maggiori, poi ricorsione. Tipicamente il più veloce in pratica, ma pivot sfortunati lo degradano.',
-    details: 'Quick sort sceglie un pivot, partiziona l’array in elementi minori e maggiori del pivot, poi ordina ricorsivamente le due parti. Di solito è rapidissimo grazie alla località di riferimento, ma un pivot pessimo porta a O(n²). Non è stabile.'
+    desc: 'Picks a pivot, partitions into smaller/greater, then recurses. Typically fastest in practice, but bad pivots degrade it.',
+    details: 'Quick sort chooses a pivot, partitions the array into elements smaller and greater than the pivot, then recursively sorts both parts. Usually very fast thanks to locality of reference, but a bad pivot leads to O(n²). It is not stable.'
   },
   heap: {
     name: 'Heap Sort',
@@ -89,8 +89,8 @@ const algorithmInfo = {
     best: 'O(n log n)',
     avg: 'O(n log n)',
     worst: 'O(n log n)',
-    desc: 'Costruisce un max-heap e sposta il massimo in fondo iterativamente. Complessità log-lineare, in-place, non stabile.',
-    details: 'Heap sort costruisce un max-heap e poi estrae ripetutamente il massimo scambiandolo con l’ultima posizione e riducendo l’heap. Offre O(n log n) anche nel caso pessimo ed è in-place, ma non stabile e con costante maggiore rispetto a quick sort.'
+    desc: 'Builds a max-heap and moves the maximum to the end iteratively. Log-linear, in-place, not stable.',
+    details: 'Heap sort builds a max-heap and repeatedly extracts the maximum by swapping it with the last position and shrinking the heap. It offers O(n log n) even in the worst case and is in-place, but not stable and with a larger constant than quick sort.'
   }
 };
 
@@ -629,7 +629,7 @@ function heapSortActions(arr) {
 function updateAlgoInfo() {
   const meta = algorithmInfo[state.algorithm];
   algoDescriptionEl.textContent = meta.desc;
-  stabilityTag.textContent = meta.stable ? 'Stabile' : 'Non stabile';
+  stabilityTag.textContent = meta.stable ? 'Stable' : 'Not stable';
   bestCaseEl.textContent = meta.best;
   avgCaseEl.textContent = meta.avg;
   worstCaseEl.textContent = meta.worst;
