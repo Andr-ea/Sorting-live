@@ -8,7 +8,7 @@ Single-page app (vanilla HTML/CSS/JS) to visualize sorting algorithms with inter
 - Live stats (comparisons, swaps, time) algorithm info.
 
 ## How to try it
-1) Open `index.html` in a modern browser (double-click or drag & drop).
+1) Open `index.html` in a modern browser (double-click or drag & drop) or visit https://andr-ea.github.io/Sorting-live/ 
 2) Pick algorithm, size, and speed, click “Generate / Shuffle” then “Start”.
 
 ## License
