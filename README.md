@@ -13,3 +13,5 @@ Single-page app (vanilla HTML/CSS/JS) to visualize sorting algorithms with inter
 
 ## License
 MIT License. See `LICENSE` for details.
+
+![Example](example.png)
