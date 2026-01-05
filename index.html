@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sorting Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="theme-dark">
+  <div class="app-shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Live Algorithms</p>
+        <h1>Sorting Visualizer</h1>
+      </div>
+      <button id="togglePanel" class="ghost-button" aria-expanded="true" aria-controls="controlPanel">Pannello</button>
+    </header>
+
+    <div class="layout">
+      <aside id="controlPanel" class="control-panel" aria-label="Pannello controlli">
+        <div class="panel-section">
+          <div class="section-header">
+            <h2>Controlli</h2>
+            <span class="badge">Live</span>
+          </div>
+          <label class="field">
+            <span>Algoritmo</span>
+            <select id="algorithmSelect" aria-label="Seleziona algoritmo">
+              <option value="bubble">Bubble Sort</option>
+              <option value="selection">Selection Sort</option>
+              <option value="insertion">Insertion Sort</option>
+              <option value="merge">Merge Sort</option>
+              <option value="quick">Quick Sort</option>
+              <option value="heap">Heap Sort</option>
+            </select>
+          </label>
+
+          <label class="field slider-field">
+            <div class="field-row">
+              <span>Dimensione array</span>
+              <span id="sizeValue" class="value-pill">50</span>
+            </div>
+            <input type="range" min="10" max="200" value="50" id="sizeSlider" aria-label="Dimensione array">
+          </label>
+
+          <label class="field slider-field">
+            <div class="field-row">
+              <span>Velocità (ms)</span>
+              <span id="speedValue" class="value-pill">40</span>
+            </div>
+            <input type="range" min="5" max="400" value="40" id="speedSlider" aria-label="Velocità animazione">
+          </label>
+
+          <label class="field">
+            <div class="field-row">
+              <span>Preset array</span>
+              <span class="value-pill ghost">extra</span>
+            </div>
+            <select id="presetSelect" aria-label="Seleziona preset array">
+              <option value="random">Random</option>
+              <option value="nearly">Quasi ordinato</option>
+              <option value="reversed">Inverso</option>
+            </select>
+          </label>
+
+          <div class="button-grid">
+            <button id="generateBtn" class="glass">Generate / Shuffle</button>
+            <button id="startBtn" class="primary">Start</button>
+            <button id="pauseBtn" class="accent">Pause</button>
+            <button id="stepBtn" class="ghost">Step</button>
+            <button id="resetBtn" class="ghost danger">Reset</button>
+          </div>
+
+          <div class="toggle-grid">
+            <label class="toggle">
+              <input type="checkbox" id="numbersToggle" checked>
+              <span class="slider"></span>
+              <span class="label">Mostra numeri</span>
+            </label>
+            <label class="toggle">
+              <input type="checkbox" id="audioToggle">
+              <span class="slider"></span>
+              <span class="label">Audio tick</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="panel-section legend">
+          <div class="section-header">
+            <h2>Legenda</h2>
+          </div>
+          <div class="legend-grid">
+            <span class="pill default">Default</span>
+            <span class="pill compare">Compare</span>
+            <span class="pill swap">Swap</span>
+            <span class="pill pivot">Pivot</span>
+            <span class="pill merge">Merge write</span>
+            <span class="pill sorted">Sorted</span>
+          </div>
+        </div>
+
+        <div class="panel-section info">
+          <div class="section-header">
+            <h2>Algoritmo</h2>
+            <div class="info-actions">
+              <span id="stabilityTag" class="badge">Stabile</span>
+              <button id="infoBtn" class="icon-button" aria-haspopup="dialog" aria-controls="infoModal" aria-label="Dettagli algoritmo">i</button>
+            </div>
+          </div>
+          <div id="algoDescription" class="info-text"></div>
+          <div class="info-grid">
+            <div>
+              <p class="muted">Best</p>
+              <p id="bestCase" class="metric"></p>
+            </div>
+            <div>
+              <p class="muted">Average</p>
+              <p id="avgCase" class="metric"></p>
+            </div>
+            <div>
+              <p class="muted">Worst</p>
+              <p id="worstCase" class="metric"></p>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="visual">
+        <div class="stats-overlay" role="status">
+          <div class="stat"><span class="muted">Confronti</span><span id="compareCount">0</span></div>
+          <div class="stat"><span class="muted">Scambi</span><span id="swapCount">0</span></div>
+          <div class="stat"><span class="muted">Tempo</span><span id="timeElapsed">0 ms</span></div>
+        </div>
+        <div id="bars" class="bars" aria-live="polite"></div>
+      </main>
+    </div>
+
+  </div>
+
+    <footer class="footer">
+      <p class="kbd-hint">Space: start/pause · R: reset</p>
+    </footer>
+  </div>
+
+  <div id="infoModal" class="info-modal" role="dialog" aria-modal="true" aria-labelledby="infoTitle" aria-hidden="true">
+    <div class="info-dialog">
+      <div class="info-dialog-header">
+        <h3 id="infoTitle">Algoritmo</h3>
+        <button id="infoClose" class="icon-button" aria-label="Chiudi dettagli">×</button>
+      </div>
+      <p id="infoBody" class="info-body"></p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
